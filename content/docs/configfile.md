@@ -118,4 +118,23 @@ Include files may in turn include other files to any level of nesting (well, up 
 
 Many parameters specify amounts of time. Times can be specified using units of secs, mins, hours, days, weeks, and years, all may be abbreviated to one letter. For example: 36y, or 12m.
 
+### Schedule Exclusions
 
+There are times where you have scheduled maintenance windows or a 3rd party has one and you don't want to override every time during this window.  In these cases, you can use Schedule checking, which can be used at any level, including the group level, to apply to all subordinate items.
+
+Syntax is:
+     mon,tue,wed,thu,fri,sat,sun, all or *
+     optionally may include start-time - end-time
+     at the end of the line specifying the schedule, include:
+     			=> no
+     This tells argus to not check during this time
+
+As an example, if I did not want argus to monitor from 10:30pm until 2am and also not monitor between Saturday at 6pm until Sunday at 11:30am local time:
+
+		Schedule checking {
+		        * 2230 - 0200 => no
+			sat 1800 - 2359 => no
+			sun 0000 - 1130 => no
+		}
+
+Note that schedule checking means that argus does not check during this time, so if a service went offline prior to this schedule and stayed offline, it would show offline even if it restored during the maintenance window.
