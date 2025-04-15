@@ -8,3 +8,6 @@ Typically, when running argus, you will have 2 types of config files:
 one to configure various aspects of argus itself, and one (often a
 directory of several files) to configure what argus should monitor.
 
+By default, the two configuration files are:
+argus.conf - Used for configuring argus itself.  There is a variable set in this file that references the below file called monitor_config.
+argusmonitor.conf - Used for configuring what argus should monitor
