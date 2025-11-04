@@ -82,10 +82,9 @@ Argus also exports various data to itself as a Service, so you can do testing an
 
 <pre>    Group "Myself" {
         graph: yes
-        Service Self/idle {
+        Service Self/idlerate {
             title:  Percent Idle
-            calc:   ave-rate
-            scale:  0.01
+            expr:  x * 100
             # let someone know when it is time to upgrade h/w
             minvalue:  20
             messagedn: time to buy faster server
